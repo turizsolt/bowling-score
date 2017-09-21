@@ -5,7 +5,7 @@ export default function bowlingScore(frames) {
     for(var i=0;i<frames.length;i++) {
 
         // basic case
-        result[i] = frames[i][0]+frames[i][1];
+        result[i] = frames[i][0]+(frames[i][1]?frames[i][1]:0);
         if(i < 9) {
             // extras during non-last frames
             if(frames[i][1] === '/') { // spare

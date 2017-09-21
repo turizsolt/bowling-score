@@ -11,7 +11,11 @@ describe("Simple runs", () => {
     });
 
     it("Multiple frames", () => {
-        expect(bowlingScore([[1,3], [2,4], [3,5]])).deep.equal([4,6,8]);
+        expect(bowlingScore([[1,3], [2,4], [3,5]])).deep.equal([4, 6, 8]);
+    });
+
+    it("A not finished frame", () => {
+        expect(bowlingScore([[1,3], [2,4], [3]])).deep.equal([4, 6, 3]);
     });
 });
 
