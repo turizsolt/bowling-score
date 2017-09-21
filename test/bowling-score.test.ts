@@ -19,4 +19,8 @@ describe("Runs with spare", () => {
     it("One spare", () => {
         expect(bowlingScore([[6, '/'], [2, 3]])).deep.equal([12, 5]);
     });
+
+    it("Multiple spare", () => {
+        expect(bowlingScore([[6, '/'], [5, '/'], [4, 2]])).deep.equal([15, 14, 6]);
+    });
 });
