@@ -6,4 +6,7 @@ describe("Simple runs", () => {
         expect(bowlingScore([])).deep.equal([]);
     });
 
+    it("Single frame", () => {
+        expect(bowlingScore([[1,3]])).deep.equal([4]);
+    });
 });
