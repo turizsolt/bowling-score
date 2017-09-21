@@ -1,8 +1,8 @@
 export default function bowlingScore(frames) {
-    var result = [];
+    let result = [];
 
     // iterating through all the frames
-    for(var i=0;i<frames.length;i++) {
+    for(let i=0;i<frames.length;i++) {
 
         // basic case
         result[i] = frames[i][0]+(frames[i][1]?frames[i][1]:0);
@@ -11,6 +11,10 @@ export default function bowlingScore(frames) {
             if(frames[i][1] === '/') { // spare
                 if(frames[i+1]) { result[i] = 10 + frames[i+1][0]; }
                 else { result[i] = '?'; }
+            }
+
+            if(frames[i][0] === 'X') { // strike
+                result[i] = 10 + frames[i+1][0] + frames[i+1][1];
             }
         } else {
             // extras during the last frame

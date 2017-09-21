@@ -39,5 +39,10 @@ describe("Runs with spare", () => {
     it("Spare in the current, 10th frame", () => {
         expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [6, '/']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, '?']);
     });
+});
 
+describe("Runs with strike", () => {
+    it("One strike", () => {
+        expect(bowlingScore([['X'], [1, 2]])).deep.equal([13, 3]);
+    });
 });
