@@ -27,4 +27,9 @@ describe("Runs with spare", () => {
     it("Spare in the 10th frame", () => {
         expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [6, '/', 3]])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 13]);
     });
+
+    it("Spare in the current frame", () => {
+        expect(bowlingScore([[6, '/']])).deep.equal(['?']);
+    });
+
 });
