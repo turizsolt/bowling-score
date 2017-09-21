@@ -25,7 +25,11 @@ export default function bowlingScore(frames) {
                     }
                 } else {
                     if(frames[i+1] && frames[i+1][0] && frames[i+1][1]) {
-                        result[i] = 10 + frames[i+1][0] + frames[i+1][1];
+                        if(frames[i+1][1] === '/') {
+                            result[i] = 20;
+                        } else {
+                            result[i] = 10 + frames[i+1][0] + frames[i+1][1];
+                        }
                     } else {
                         result[i] = '?';
                     }

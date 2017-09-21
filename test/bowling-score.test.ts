@@ -78,3 +78,9 @@ describe("Runs with strike", () => {
         expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X', 'X', 'X']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 30]);
     });
 });
+
+describe("Runs with strike and spare", () => {
+    it("Strike and spare", () => {
+        expect(bowlingScore([['X'], [6, '/'], [2, 3]])).deep.equal([20, 12, 5]);
+    });
+});
