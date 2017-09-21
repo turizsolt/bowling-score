@@ -15,7 +15,8 @@ export default function bowlingScore(frames) {
         } else {
             // extras during the last frame
             if(frames[i][1] === '/') { // spare
-                result[i] = 10 + frames[i][2];
+                if(frames[i][2]) { result[i] = 10 + frames[i][2]; }
+                else { result[i] = '?'; }
             }
         }
     }
