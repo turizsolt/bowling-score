@@ -1,70 +1,37 @@
 export default function bowlingScore(frames) {
-    let result = [];
-
-    // iterating through all the frames
-    for(let i=0;i<frames.length;i++) {
-
-        // basic case
-        result[i] = frames[i][0]+(frames[i][1]?frames[i][1]:0);
-        if(i < 9) {
-            // extras during non-last frames
-            if(frames[i][1] === '/') { // spare
-                if(frames[i+1]) {
-                    if(frames[i+1][0] === 'X') {
-                        result[i] = 20;
-                    } else {
-                        result[i] = 10 + frames[i+1][0];
-                    }
-                } else {
-                    result[i] = '?';
-                }
-            }
-
-            if(frames[i][0] === 'X') { // strike
-                if(frames[i+1] && frames[i+1][0] === 'X'){
-                    if(frames[i+2] && frames[i+2][0] === 'X'){
-                        result[i] = 30;
-                    } else {
-                        result[i] = 20 + frames[i+2][0];
-                    }
-                } else {
-                    if(frames[i+1] && frames[i+1][0] && frames[i+1][1]) {
-                        if(frames[i+1][1] === '/') {
-                            result[i] = 20;
-                        } else {
-                            result[i] = 10 + frames[i+1][0] + frames[i+1][1];
-                        }
-                    } else {
-                        result[i] = '?';
-                    }
-                }
-            }
-        } else {
-            // extras during the last frame
-            if(frames[i][1] === '/') { // spare
-                if(frames[i][2]) {
-                    if(frames[i][2] === 'X') {
-                        result[i] = 20;
-                    } else {
-                        result[i] = 10 + frames[i][2];
-                    }
-                } else {
-                    result[i] = '?';
-                }
-            }
-
-            if(frames[i][0] === 'X') { // strike
-                if(frames[i][1] && frames[i][2]) {
-                    if(frames[i][2] === '/') {
-                        result[i] = 20;
-                    } else {
-                        result[i] = 10 + (frames[i][1] === 'X'?10:frames[i][1]) + (frames[i][2] === 'X'?10:frames[i][2]);
-                    }
-                } else {
-                    result[i] = '?';
-                }
-            }
-        }
-    }
-    return result;
+    return frames.map((frame, index) => frameScore(frame, index, frames));
 }
+
+function frameScore(frame, index, frames) {
+    if(isSpare(frame)) return frameScoreWhenSpare(frame, index, frames);
+    if(isStrike(frame)) return frameScoreWhenStrike(frame, index, frames);
+    return frameScoreNormal(frame);
+}
+
+function isSpare(frame) {
+    return (frame[1] === '/');
+}
+
+function isStrike(frame) {
+    return (frame[0] === 'X');
+}
+
+function valueOrZero(value) {
+    return value?value:0;
+}
+
+function frameScoreNormal(frame) {
+    return valueOrZero(frame[0])+valueOrZero(frame[1]);
+}
+
+function frameScoreWhenSpare(frame, index, frames) {
+    return 0;
+}
+
+
+function frameScoreWhenStrike(frame, index, frames) {
+    return 0;
+}
+
+
+
