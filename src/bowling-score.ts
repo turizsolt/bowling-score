@@ -17,8 +17,8 @@ export default function bowlingScore(frames) {
             }
 
             if(frames[i][0] === 'X') { // strike
-                if(frames[i+1][0] === 'X'){
-                    if(frames[i+2][0] === 'X'){
+                if(frames[i+1] && frames[i+1][0] === 'X'){
+                    if(frames[i+2] && frames[i+2][0] === 'X'){
                         result[i] = 30;
                     } else {
                         result[i] = 20 + frames[i+2][0];
