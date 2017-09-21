@@ -91,4 +91,8 @@ describe("Runs with strike and spare", () => {
     it("Spare and strike in the 10th frame", () => {
         expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['6', '/', 'X']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 20]);
     });
+
+    it("Strike and spare in the 10th frame", () => {
+        expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X', '6', '/']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 20]);
+    });
 });

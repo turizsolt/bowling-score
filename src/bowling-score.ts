@@ -55,7 +55,11 @@ export default function bowlingScore(frames) {
 
             if(frames[i][0] === 'X') { // strike
                 if(frames[i][1] && frames[i][2]) {
-                    result[i] = 10 + (frames[i][1] === 'X'?10:frames[i][1]) + (frames[i][2] === 'X'?10:frames[i][2]);
+                    if(frames[i][2] === '/') {
+                        result[i] = 20;
+                    } else {
+                        result[i] = 10 + (frames[i][1] === 'X'?10:frames[i][1]) + (frames[i][2] === 'X'?10:frames[i][2]);
+                    }
                 } else {
                     result[i] = '?';
                 }
