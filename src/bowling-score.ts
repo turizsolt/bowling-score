@@ -1,3 +1,5 @@
+const lastFrame = 9;
+
 export default function bowlingScore(frames) {
     return frames.map((frame, index) => frameScore(frame, index, frames));
 }
@@ -25,7 +27,7 @@ function frameScoreNormal(frame) {
 }
 
 function frameScoreWhenSpare(frame, index, frames) {
-    return 0;
+    return add(10,nextRoll(frames, index));
 }
 
 
@@ -33,5 +35,18 @@ function frameScoreWhenStrike(frame, index, frames) {
     return 0;
 }
 
+function add(a, b){
+    return b==='?'?'?':a+b;
+}
+
+function nextRoll(frames: any, index: any) {
+    if(index == lastFrame) {
+        if(!frames[index][2]) return '?';
+        return frames[index][2];
+    }
+    if(!frames[index+1]) return '?';
+    if(frames[index+1][0] === 'X') return 10;
+    return frames[index+1][0];
+}
 
 
