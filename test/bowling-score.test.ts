@@ -9,4 +9,8 @@ describe("Simple runs", () => {
     it("Single frame", () => {
         expect(bowlingScore([[1,3]])).deep.equal([4]);
     });
+
+    it("Multiple frames", () => {
+        expect(bowlingScore([[1,3], [2,4], [3,5]])).deep.equal([4,6,8]);
+    });
 });
