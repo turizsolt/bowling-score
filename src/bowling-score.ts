@@ -22,7 +22,7 @@ function isLastFrame(index) {
     return index == lastFrame;
 }
 
-function isFrameNotExisting(index, frames) {
+function isFrameNotExisting(frames, index) {
     return !frames[index];
 }
 
@@ -51,15 +51,15 @@ function add(a, b){
     return a + b;
 }
 
-function nextRoll(frames: any, index: any) {
+function nextRoll(frames, index) {
     if(isLastFrame(index)) return valueOrQuestionMark(frames[index][isStrike(frames[index])?1:2]);
-    if(isFrameNotExisting(index+1, frames)) return '?';
+    if(isFrameNotExisting(frames, index+1)) return '?';
     return valueOrQuestionMark(frames[index+1][0]);
 }
 
-function secondNextRoll(frames: any, index: any) {
+function secondNextRoll(frames, index) {
     if(isLastFrame(index)) return valueOrQuestionMark(frames[index][2]);
-    if(isFrameNotExisting(index+1, frames)) return '?';
+    if(isFrameNotExisting(frames, index+1)) return '?';
     if(isStrike(frames[index+1])) return nextRoll(frames, index+1);
     return valueOrQuestionMark(frames[index+1][1]);
 }
