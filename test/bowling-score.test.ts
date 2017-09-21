@@ -14,3 +14,9 @@ describe("Simple runs", () => {
         expect(bowlingScore([[1,3], [2,4], [3,5]])).deep.equal([4,6,8]);
     });
 });
+
+describe("Runs with spare", () => {
+    it("One spare", () => {
+        expect(bowlingScore([[6, '/'], [2, 3]])).deep.equal([12, 5]);
+    });
+});
