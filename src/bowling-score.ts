@@ -23,6 +23,10 @@ function valueOrZero(value) {
     return value?value:0;
 }
 
+function valueOrQuestionMark(value) {
+    return value?value:'?';
+}
+
 function frameScoreNormal(frame) {
     return valueOrZero(frame[0])+valueOrZero(frame[1]);
 }
@@ -45,13 +49,7 @@ function add(a, b){
 
 function nextRoll(frames: any, index: any) {
     if(index == lastFrame) {
-        if(frames[index][0] === 'X') {
-            if(!frames[index][1]) return '?';
-            return frames[index][1];
-        }
-
-        if(!frames[index][2]) return '?';
-        return frames[index][2];
+        return valueOrQuestionMark(frames[index][isStrike(frames[index])?1:2]);
     }
     if(!frames[index+1]) return '?';
     return frames[index+1][0];
@@ -59,13 +57,11 @@ function nextRoll(frames: any, index: any) {
 
 function secondNextRoll(frames: any, index: any) {
     if(index == lastFrame) {
-        if(!frames[index][2]) return '?';
-        return frames[index][2];
+        return valueOrQuestionMark(frames[index][2]);
     }
 
     if(!frames[index+1]) return '?';
     if(frames[index+1][0] === 'X') return nextRoll(frames, index+1);
 
-    if(!frames[index+1] || !frames[index+1][1]) return '?';
-    return frames[index+1][1];
+    return valueOrQuestionMark(frames[index+1][1]);
 }
