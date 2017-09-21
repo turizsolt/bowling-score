@@ -15,7 +15,7 @@ describe("Simple runs", () => {
     });
 
     it("A not finished frame", () => {
-        expect(bowlingScore([[1,3], [2,4], [3]])).deep.equal([4, 6, 3]);
+        expect(bowlingScore([[1,3], [2,4], [3]])).deep.equal([4, 6, '?']);
     });
 });
 
@@ -55,7 +55,7 @@ describe("Runs with strike", () => {
     });
 
     it("One strike ongoing, misses one more", () => {
-        expect(bowlingScore([['X'], [1]])).deep.equal(['?', 1]);
+        expect(bowlingScore([['X'], [1]])).deep.equal(['?', '?']);
     });
 
     it("One strike ongoing, misses two more", () => {

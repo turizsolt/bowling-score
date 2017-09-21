@@ -1,7 +1,6 @@
 const lastFrame = 9;
 
 export default function bowlingScore(frames) {
-    console.log(frames);
     return frames.map((frame, index) => frameScore(frame, index, frames));
 }
 
@@ -19,49 +18,48 @@ function isStrike(frame) {
     return (frame[0] === 'X');
 }
 
-function valueOrZero(value) {
-    return value?value:0;
+function isLastFrame(index) {
+    return index == lastFrame;
+}
+
+function isFrameNotExisting(index, frames) {
+    return !frames[index];
 }
 
 function valueOrQuestionMark(value) {
-    return value?value:'?';
+    return (value || value === 0) ? value : '?';
 }
 
 function frameScoreNormal(frame) {
-    return valueOrZero(frame[0])+valueOrZero(frame[1]);
+    return add(valueOrQuestionMark(frame[0]), valueOrQuestionMark(frame[1]));
 }
 
 function frameScoreWhenSpare(index, frames) {
-    return add(10,nextRoll(frames, index));
+    return add(10, nextRoll(frames, index));
 }
-
 
 function frameScoreWhenStrike(index, frames) {
     return add(10, add(nextRoll(frames, index), secondNextRoll(frames, index)));
 }
 
 function add(a, b){
-    if(a === 'X') a = 10;
+    if(a === '?') return '?';
+    if(b === '?') return '?';
     if(b === '/') return 10;
-    if(b === 'X') return a+10;
-    return b==='?'?'?':a+b;
+    if(a === 'X') a = 10;
+    if(b === 'X') return a + 10;
+    return a + b;
 }
 
 function nextRoll(frames: any, index: any) {
-    if(index == lastFrame) {
-        return valueOrQuestionMark(frames[index][isStrike(frames[index])?1:2]);
-    }
-    if(!frames[index+1]) return '?';
-    return frames[index+1][0];
+    if(isLastFrame(index)) return valueOrQuestionMark(frames[index][isStrike(frames[index])?1:2]);
+    if(isFrameNotExisting(index+1, frames)) return '?';
+    return valueOrQuestionMark(frames[index+1][0]);
 }
 
 function secondNextRoll(frames: any, index: any) {
-    if(index == lastFrame) {
-        return valueOrQuestionMark(frames[index][2]);
-    }
-
-    if(!frames[index+1]) return '?';
-    if(frames[index+1][0] === 'X') return nextRoll(frames, index+1);
-
+    if(isLastFrame(index)) return valueOrQuestionMark(frames[index][2]);
+    if(isFrameNotExisting(index+1, frames)) return '?';
+    if(isStrike(frames[index+1])) return nextRoll(frames, index+1);
     return valueOrQuestionMark(frames[index+1][1]);
 }
