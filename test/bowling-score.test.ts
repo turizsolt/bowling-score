@@ -70,7 +70,11 @@ describe("Runs with strike", () => {
         expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X', 3]])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, '?']);
     });
 
-    it("Strike in the current, 10th frame, missing two", () => {
-        expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, '?']);
+    it("Two strikes in the current, 10th frame", () => {
+        expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X', 'X', 9]])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 29]);
+    });
+
+    it("Three strikes in the current, 10th frame", () => {
+        expect(bowlingScore([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], ['X', 'X', 'X']])).deep.equal([0, 0, 0, 0, 0, 0, 0, 0, 0, 30]);
     });
 });
