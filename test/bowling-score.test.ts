@@ -53,4 +53,8 @@ describe("Runs with strike", () => {
     it("Three strikes", () => {
         expect(bowlingScore([['X'], ['X'], ['X'], [1, 2]])).deep.equal([30, 21, 13, 3]);
     });
+
+    it("One strike ongoing, misses one more", () => {
+        expect(bowlingScore([['X'], [1]])).deep.equal(['?', 1]);
+    });
 });
